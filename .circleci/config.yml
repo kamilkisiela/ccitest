@@ -1,0 +1,23 @@
+version: 2
+jobs:
+  test:
+    docker:
+      - image: node:lts-alpine
+    working_directory: ~/kamil
+    environment:
+      FOO: yes
+      BAR: $CIRCLE_BRANCH
+      BAZ: ${CIRCLE_BRANCH}
+    steps:
+      - checkout
+      - run:
+          name: Run Tests
+          command: |
+            echo $FOO
+            echo $BAR
+            echo $BAZ
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - test
