@@ -13,9 +13,11 @@ jobs:
       - run:
           name: Run Tests
           command: |
+            export QUX=${CIRCLE_BRANCH}
             echo $FOO
             echo $BAR
             echo $BAZ
+            echo $QUX
 workflows:
   version: 2
   build_and_test:
