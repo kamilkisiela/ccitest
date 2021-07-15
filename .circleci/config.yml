@@ -23,8 +23,8 @@ jobs:
       - run:
           name: Detect Changes
           command: |
-            node circleci.loader.js
-            yarn graphql-inspector diff $CIRCLECI_LOADER_OUTPUT schema.graphql
+            node circleci.loader.js || echo 'ok'
+            yarn graphql-inspector diff $CIRCLECI_LOADER_OUTPUT schema.graphql || echo 'ok'
             
 workflows:
   version: 2
