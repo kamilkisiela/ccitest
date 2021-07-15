@@ -4,7 +4,7 @@ jobs:
     docker:
       - image: node:lts-alpine
     working_directory: ~/kamil
-    env:
+    environment:
       CIRCLECI_LOADER_PROJECT: "github/kamilkisiela/ccitest"
       CIRCLECI_LOADER_WORKFLOW: "build_and_test"
       CIRCLECI_LOADER_BRANCH": "main"
