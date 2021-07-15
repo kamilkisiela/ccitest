@@ -19,10 +19,10 @@ jobs:
           destination: graphql-schema
       - run:
           name: Install
-          run: yarn install
+          command: yarn install
       - run:
           name: Detect Changes
-          run: |
+          command: |
             node circleci.loader.js
             yarn graphql-inspector diff $CIRCLECI_LOADER_OUTPUT schema.graphql
             
