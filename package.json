@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "name": "ccitest",
+  "dependencies": {
+    "@graphql-inspector/ci": "2.6.1",
+    "@graphql-inspector/diff-command": "2.6.1",
+    "axios": "0.21.1",
+    "graphql": "15.5.1"
+  }
+}

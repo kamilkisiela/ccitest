@@ -4,20 +4,12 @@ jobs:
     docker:
       - image: node:lts-alpine
     working_directory: ~/kamil
-    environment:
-      FOO: yes
-      BAR: $CIRCLE_BRANCH
-      BAZ: ${CIRCLE_BRANCH}
     steps:
       - checkout
-      - run:
-          name: Run Tests
-          command: |
-            export QUX=${CIRCLE_BRANCH}
-            echo $FOO
-            echo $BAR
-            echo $BAZ
-            echo $QUX
+      # Save GraphQL Schema as an artifact
+      - store_artifacts:
+          path: schema.graphql
+          destination: graphql-schema
 workflows:
   version: 2
   build_and_test:
