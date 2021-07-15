@@ -4,12 +4,28 @@ jobs:
     docker:
       - image: node:lts-alpine
     working_directory: ~/kamil
+    env:
+      CIRCLECI_LOADER_PROJECT: "github/kamilkisiela/ccitest"
+      CIRCLECI_LOADER_WORKFLOW: "build_and_test"
+      CIRCLECI_LOADER_BRANCH": "main"
+      CIRCLECI_LOADER_JOB: "test"
+      CIRCLECI_LOADER_ARTIFACT: "graphql-schema"
+      CIRCLECI_LOADER_OUTPUT: "main-schema.graphql"
     steps:
       - checkout
       # Save GraphQL Schema as an artifact
       - store_artifacts:
           path: schema.graphql
           destination: graphql-schema
+      - run:
+          name: Install
+          run: yarn install
+      - run:
+          name: Detect Changes
+          run: |
+            node circleci.loader.js
+            yarn graphql-inspector diff $CIRCLECI_LOADER_OUTPUT schema.graphql
+            
 workflows:
   version: 2
   build_and_test:
